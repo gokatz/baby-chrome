@@ -3,7 +3,6 @@
 var chalk                = require('chalk');
 var fs                   = require('fs');
 var inquirer             = require('inquirer');
-
 var defaultContent       = require('./default_content/content');
 
 var processArgs = process.argv;
@@ -15,7 +14,7 @@ if (!extName) {
 }
 
 var cwd = process.cwd();
-var extensionPath = `${cwd}/${extName}`
+var extensionPath = `${cwd}/${extName}`;
 
 var isPathAlreadyExists = fs.existsSync(extensionPath);
 if (isPathAlreadyExists) {
@@ -98,20 +97,21 @@ var generateExtension = function(extOptionsArray) {
   ]`;
   }
 
+  var nodeModulesDir = __dirname;
   if (extOptionsArray.indexOf('Need Bootstrap for basic styling') !== -1) {
-    fs.createReadStream('./default_files/bootstrap.min.css').pipe(fs.createWriteStream(`${extensionPath}/vendor/css/bootstrap.min.css`));
-    fs.createReadStream('./default_files/bootstrap.min.js').pipe(fs.createWriteStream(`${extensionPath}/vendor/js/bootstrap.min.js`));
+    fs.createReadStream(`${nodeModulesDir}/default_files/bootstrap.min.css`).pipe(fs.createWriteStream(`${extensionPath}/vendor/css/bootstrap.min.css`));
+    fs.createReadStream(`${nodeModulesDir}/default_files/bootstrap.min.js`).pipe(fs.createWriteStream(`${extensionPath}/vendor/js/bootstrap.min.js`));
     console.log(chalk.green('added bootstrap'));
   }
 
   if (extOptionsArray.indexOf('Need jQuery for DOM maniuplation') !== -1) {
-    fs.createReadStream('./default_files/jquery.min.js').pipe(fs.createWriteStream(`${extensionPath}/vendor/js/jquery.min.js`));
+    fs.createReadStream(`${nodeModulesDir}/default_files/jquery.min.js`).pipe(fs.createWriteStream(`${extensionPath}/vendor/js/jquery.min.js`));
     console.log(chalk.green('added jQuery'));
   }
 
-  fs.createReadStream('./default_files/logo.png').pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_16.png`));
-  fs.createReadStream('./default_files/logo.png').pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_48.png`));
-  fs.createReadStream('./default_files/logo.png').pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_128.png`));
+  fs.createReadStream(`${nodeModulesDir}/default_files/logo.png`).pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_16.png`));
+  fs.createReadStream(`${nodeModulesDir}/default_files/logo.png`).pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_48.png`));
+  fs.createReadStream(`${nodeModulesDir}/default_files/logo.png`).pipe(fs.createWriteStream(`${extensionPath}/assets/images/logo/logo_128.png`));
   console.log(chalk.green('added logos'));
 
   constructedManifest = constructedManifest + `
