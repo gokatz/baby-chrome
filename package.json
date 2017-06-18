@@ -1,0 +1,14 @@
+{
+  "name": "baby-chrome",
+  "version": "0.0.1",
+  "description": "get your Chrome extension project scaffolded",
+  "main": "index.js",
+  "bin": {
+    "baby-chrome": "./index.js"
+  },
+  "author": "@_gokatz",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
+}
