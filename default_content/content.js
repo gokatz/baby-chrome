@@ -1,7 +1,7 @@
 var processArgs = process.argv;
 var extName = processArgs[2];
 
-let manifestContent = `{
+var manifestContent = `{
   "manifest_version": 2,
 
   "name": "${extName}",
@@ -20,7 +20,7 @@ let manifestContent = `{
   },
   "permissions": ["activeTab"]`;
 
-let popupHtmlContent = `<!DOCTYPE html>
+var popupHtmlContent = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -31,7 +31,7 @@ let popupHtmlContent = `<!DOCTYPE html>
 
   </head>
   <body>
-    <!-- feel free to delete this section -->
+    <!-- feel free to devare this section -->
     <div id="onboarding" style="text-align: center; padding-top: 70px; font-size: 14px;">
       <img src="assets/images/logo/logo_128.png" id="logo-spin" alt="google-chrome" width="120px;" height="120px">
       <div style="margin-top: 35px;"> Are you ready to build your amazing extension? </div>
@@ -44,7 +44,7 @@ let popupHtmlContent = `<!DOCTYPE html>
   <script src="popup.js"></script>
 </html>`;
 
-let contentHtml = `<!DOCTYPE html>
+var contentHtml = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -55,11 +55,11 @@ let contentHtml = `<!DOCTYPE html>
   </body>
 </html>`;
 
-let initialJsContent = `document.addEventListener('DOMContentLoaded', function() {
+var initialJsContent = `document.addEventListener('DOMContentLoaded', function() {
   // your script goes here...
 })`;
 
-let popupCssContent = `body {
+var popupCssContent = `body {
   margin: 0;
   background: #d2f0fd;
   width: 300px;
@@ -110,7 +110,7 @@ let popupCssContent = `body {
     }
 }`;
 
-let dummyCssContent = `body {
+var dummyCssContent = `body {
   margin: 0;
 }`;
 
