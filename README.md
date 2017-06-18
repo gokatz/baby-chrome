@@ -1,10 +1,10 @@
-#baby-chrome 👶
+# baby-chrome 👶
 Get your Chrome extension project scaffolded! I usually, when creating a Chrome extension, will be copy-pasting general files such as manifest files, Bootstrap, jQuery from an old project. I hope many fellow devs would have done this 😉. No more copy-paste!. Just do `baby-chrome <name of your baby`, you get a pre-aligned project folder.
 
-#Installation 🏄
+# Installation 🏄
 yes, you are right... `npm install baby-chrome`
 
-#Usage 🏹
+# Usage 🏹
 `baby-chrome <name of your baby>`
 
 For Instance, `baby-chrome space-shuttle`
@@ -13,8 +13,7 @@ On this command, you will be presented with a checkbox menu to choose the nature
 
 Choose the appropriate options and click enter. That's it, start working on your extension, right away!
 
-#Dev Setup 💻
-
+# Dev Setup 💻
 Once the project folder is generated,
 
 * Open Google Chrome and navigate to *chrome://extensions/*
