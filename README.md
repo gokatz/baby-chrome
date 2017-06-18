@@ -24,3 +24,6 @@ Once the project folder is generated,
 
 **NOTE:** If you edit any extension file, click on the 'Reload' link (cmd+R / cntrl+R) to get the changes.
 Need more Automation? Let's work together to get that done 😉
+
+# Contribution 👨‍👧‍👦
+Need more Automation? Let's work together to get that done 😉
