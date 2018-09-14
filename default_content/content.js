@@ -1,7 +1,37 @@
-var processArgs = process.argv;
-var extName = processArgs[2];
+let processArgs = process.argv;
+let extName = processArgs[2];
 
-var manifestContent = `{
+// package.json will be included for webpack build alone
+let packageJsonFile = `
+{
+  "name": "${extName}",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "lint": "yarn eslint src/ lib/ webpack.config.js",
+    "build:dev": "MODE=dev webpack --config webpack.config.js",
+    "build:prod": "MODE=prod webpack --config webpack.config.js"
+  },
+  "author": "<author_name>",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "eslint": "^5.4.0",
+    "eslint-config-google": "^0.9.1",
+    "request": "^2.88.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "eslintIgnore": [
+    "build/*"
+  ]
+}
+`;
+
+let manifestContent = `{
   "manifest_version": 2,
 
   "name": "${extName}",
@@ -20,7 +50,7 @@ var manifestContent = `{
   },
   "permissions": ["activeTab"]`;
 
-var popupHtmlContent = `<!DOCTYPE html>
+let popupHtmlContent = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -44,7 +74,7 @@ var popupHtmlContent = `<!DOCTYPE html>
   <script src="popup.js"></script>
 </html>`;
 
-var contentHtml = `<!DOCTYPE html>
+let contentHtml = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -55,11 +85,11 @@ var contentHtml = `<!DOCTYPE html>
   </body>
 </html>`;
 
-var initialJsContent = `document.addEventListener('DOMContentLoaded', function() {
+let initialJsContent = `document.addEventListener('DOMContentLoaded', function() {
   // your script goes here...
 })`;
 
-var popupCssContent = `body {
+let popupCssContent = `body {
   margin: 0;
   background: #d2f0fd;
   width: 300px;
@@ -110,9 +140,70 @@ var popupCssContent = `body {
     }
 }`;
 
-var dummyCssContent = `body {
+let dummyCssContent = `body {
   margin: 0;
 }`;
+
+let webpackConfig = `
+/* global require, process, module */
+
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+let { MODE } = process.env;
+
+const isDev = MODE === 'dev';
+let jsConfig = {
+  entry: {
+    {{popupEntry}}
+    {{injectEntry}}
+    {{contentEntry}}
+    {{backgroundEntry}}
+  },
+  mode: isDev ? 'development' : 'production',
+  devtool: 'source-map',
+  watch: isDev,
+  output: {
+    path: path.resolve(__dirname, 'build/js'),
+    filename: '[name].js'
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
+
+  plugins: [
+
+    // copying css files
+    new CopyWebpackPlugin([
+      {
+        from: 'assets/',
+        to: '../',
+        toType: 'dir'
+      },
+    ], {}),
+
+    // copying root level files
+    new CopyWebpackPlugin([
+      {
+        from: 'popup.html',
+        to: '../popup.html',
+        toType: 'file'
+      },
+    ], {})
+  ]
+};
+
+module.exports = [ jsConfig ];
+`
 
 module.exports = {
   manifestContent,
@@ -120,5 +211,7 @@ module.exports = {
   initialJsContent,
   popupCssContent,
   dummyCssContent,
-  contentHtml
+  contentHtml,
+  packageJsonFile,
+  webpackConfig
 }
