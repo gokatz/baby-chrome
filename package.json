@@ -6,6 +6,9 @@
   "bin": {
     "baby-chrome": "./index.js"
   },
+  "scripts": {
+    "start": "node ./index.js"
+  },
   "author": "@_gokatz",
   "license": "MIT",
   "repository": {
@@ -14,6 +17,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.3",
-    "inquirer": "^3.1.1"
+    "inquirer": "^3.1.1",
+    "rimraf": "^2.6.2"
   }
 }

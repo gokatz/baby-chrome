@@ -1,0 +1,26 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "lint": "yarn eslint src/ lib/ webpack.config.js",
+    "build:dev": "MODE=dev webpack --config webpack.config.js",
+    "build:prod": "MODE=prod webpack --config webpack.config.js"
+  },
+  "author": "<author_name>",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "eslint": "^5.4.0",
+    "eslint-config-google": "^0.9.1",
+    "request": "^2.88.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "eslintIgnore": [
+    "build/*"
+  ]
+}
