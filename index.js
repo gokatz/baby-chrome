@@ -32,7 +32,8 @@ inquirer.prompt(
                 'Has background activity',
                 'Need to manipulate other website with your chrome extension',
                 'Need jQuery for DOM maniuplation',
-                'Need Bootstrap for basic styling'],
+                'Need Bootstrap for basic styling',
+                'Need Deploy script that helps automating extension deployment (CI environment)'],
       default: ['Need a popup page when clicking on extension icon', 'Need jQuery for DOM maniuplation', 'Need Bootstrap for basic styling']
     }
   ]
